@@ -68,18 +68,18 @@ const MapComponent = () => {
                 >
                     <Popup className="w-[300px]">
                         <section>
-                            <p className="text-[17px] uppercase font-bold mb-[10px]">{org.name}</p>
-                            <div className="flex items-center gap-2 mb-2">
+                            <p className="text-[15px] uppercase font-bold mb-[10px]">{org.name}</p>
+                            <div className="flex items-center gap-2 mb-[2px]">
                                 <MapPin size={20} />
-                                <p>{org.address}</p>
+                                <p className="m-0">{org.address}</p>
                             </div>
-                            <div className="flex items-center gap-2 mb-2">
+                            <div className="flex items-center gap-2 mb-[2px]">
                                 <Phone size={20}/>
-                                <p>{org.number}</p>
+                                <p className="m-0">{org.number}</p>
                             </div>
-                            <div className="flex items-center gap-2 mb-2">
+                            <div className="flex items-center gap-2 mb-[2px]">
                                 <Mail size={20} />
-                                <p>{org.email}</p>
+                                <p className="m-0">{org.email}</p>
                             </div>
                         </section>
                     </Popup>
