@@ -10,7 +10,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 
 
-const GOOGLE_MAPS_API_KEY = "AIzaSyC0T2ujLcf_ANyZH1cMafQSKHJmzaAx2pY";
+const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY || "";
 
 const defaultCenter = {
     lat: 37.7749,
@@ -143,7 +143,7 @@ const FormComponent = () => {
                     <label htmlFor="email" className="font-medium ">Email*</label><br />
                     <Input
                         name="email"
-                        type="text"
+                        type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="w-full outline-none mt-[6px]" />
@@ -185,8 +185,8 @@ const FormComponent = () => {
                         className="w-full outline-none mt-[6px]" />
                 </div>
                 <div className="mt-[40px] w-full">
-                    <Button  disabled={loading} type="submit" variant="outline"
-                        className="w-full bg-blue-600 text-white font-medium hover:bg-blue-500 hover:text-white">
+                    <Button  disabled={loading} type="submit"
+                        className="w-full text-white font-medium hover:bg-gray-700 hover:text-white">
                         {loading ? <>
                             <Loader /> In Progress...
                         </> : "Register"}
