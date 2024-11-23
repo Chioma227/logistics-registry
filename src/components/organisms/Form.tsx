@@ -34,7 +34,7 @@ const FormComponent = () => {
 
     // get longitude and latitude values from user's location
     useEffect(() => {
-        if (navigator.geolocation) {
+        if (typeof window !== "undefined" && navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
                     const { latitude, longitude } = position.coords;
