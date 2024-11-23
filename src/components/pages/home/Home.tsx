@@ -11,11 +11,11 @@ const HomeComponent = () => {
         router.push("/register")
     }
     return (
-        <main className="h-[100dvh] px-[50px]">
+        <main className="h-[100dvh] sm:px-[50px]">
             <Header />
-            <section className="flex items-center justify-center">
+            <section className="flex items-center justify-center md:mt-[150px] mt-[70px]">
                 <div className="text-center p-8">
-                    <h1 className="text-4xl font-bold mb-4">Welcome to LogiRegistry</h1>
+                    <h1 className="sm:text-4xl text-[30px] font-bold mb-4">Welcome to LogiRegistry</h1>
                     <p className="text-lg text-gray-600 mb-6">
                         Connect, register, and grow with the leading logistics registry platform. Start your journey today!
                     </p>
