@@ -20,8 +20,6 @@ const RegisterComponent = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedOrg, setSelectedOrg] = useState<orgSchema | null>(null);
 
-  if (typeof window === "undefined") return null; 
-
   // Close dialog
   const handleDialogClose = () => {
     setSelectedOrg(null);
