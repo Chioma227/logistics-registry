@@ -40,44 +40,21 @@ const FormComponent = () => {
 
     // get longitude and latitude values from user's location
     useEffect(() => {
-        // const getCoords = async () => {
-        //     try {
-        //         const response = await fetch(
-        //             `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
-        //                 address
-        //             )}&key=${GOOGLE_MAPS_API_KEY}`
-        //         );
-        //         const data = await response.json();
-    
-        //         if (data.results.length > 0) {
-        //             const location = data.results[0].geometry.location;
-        //             setLatitude(String(location.lat));
-        //             setLongitude(String(location.lng));
-        //             setMarkerPosition({ lat: latitude, lng: longitude });
-        //         } else {
-        //             toast("Address not found.");
-        //         }
-        //     } catch {
-        //         throw new Error("Address not found.");
-        //     }
-           
-        // }
-        // getCoords();
-        // if (typeof window !== "undefined" && window.navigator.geolocation) {
-        //     window.navigator.geolocation.getCurrentPosition(
-        //         (position) => {
-        //             const { latitude, longitude } = position.coords;
-        //             setLatitude(String(latitude));
-        //             setLongitude(String(longitude));
-        //             setMarkerPosition({ lat: latitude, lng: longitude });
-        //         },
-        //         (error) => {
-        //             setLatitude("37.7749");
-        //             setLongitude("-122.4194");
-        //             console.error("Error fetching location:", error);
-        //         }
-        //     );
-        // }
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords;
+                    setLatitude(String(latitude));
+                    setLongitude(String(longitude));
+                    setMarkerPosition({ lat: latitude, lng: longitude });
+                },
+                (error) => {
+                    setLatitude("37.7749");
+                    setLongitude("-122.4194");
+                    console.error("Error fetching location:", error);
+                }
+            );
+        }
     }, []);
 
 
@@ -143,8 +120,6 @@ const FormComponent = () => {
             setEmail('');
             setNumber('');
             setAddress('');
-            setLatitude("");
-            setLongitude("");
             setLoading(false);
             handleGeocode();
         } catch {

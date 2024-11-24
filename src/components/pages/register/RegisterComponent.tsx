@@ -18,7 +18,7 @@ type orgSchema = {
   address?: string,
 }
 
-const RegisterComponent = () => {
+const RegisterComponent  = () => {
   //states
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedOrg, setSelectedOrg] = useState<orgSchema | null>(null);
