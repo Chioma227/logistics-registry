@@ -27,6 +27,12 @@ const FormComponent = () => {
     const [latitude, setLatitude] = useState("37.7749");
     const [longitude, setLongitude] = useState("-122.4194");
     const [markerPosition, setMarkerPosition] = useState(defaultCenter);
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+      setIsClient(true); // Mark the component as mounted
+    }, []);
+  
 
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: GOOGLE_MAPS_API_KEY,
@@ -125,6 +131,7 @@ const FormComponent = () => {
     };
 
     if (!isLoaded) return <div>Loading map...</div>;
+    if (!isClient) return null;
 
     return (
         <section className="lg:w-[35%] md:w-[50%] w-full lg:h-screen h-fit bg-white md:p-[23px] p-[15px] shadow-xl rounded-md">
