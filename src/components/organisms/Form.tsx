@@ -32,7 +32,7 @@ const FormComponent = () => {
     // useEffect(() => {
     //   setIsClient(true); // Mark the component as mounted
     // }, []);
-  
+
 
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: GOOGLE_MAPS_API_KEY,
@@ -40,21 +40,44 @@ const FormComponent = () => {
 
     // get longitude and latitude values from user's location
     useEffect(() => {
-        if (typeof window !== "undefined" && window.navigator.geolocation) {
-            window.navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const { latitude, longitude } = position.coords;
-                    setLatitude(String(latitude));
-                    setLongitude(String(longitude));
-                    setMarkerPosition({ lat: latitude, lng: longitude });
-                },
-                (error) => {
-                    setLatitude("37.7749");
-                    setLongitude("-122.4194");
-                    console.error("Error fetching location:", error);
-                }
-            );
-        }
+        // const getCoords = async () => {
+        //     try {
+        //         const response = await fetch(
+        //             `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+        //                 address
+        //             )}&key=${GOOGLE_MAPS_API_KEY}`
+        //         );
+        //         const data = await response.json();
+    
+        //         if (data.results.length > 0) {
+        //             const location = data.results[0].geometry.location;
+        //             setLatitude(String(location.lat));
+        //             setLongitude(String(location.lng));
+        //             setMarkerPosition({ lat: latitude, lng: longitude });
+        //         } else {
+        //             toast("Address not found.");
+        //         }
+        //     } catch {
+        //         throw new Error("Address not found.");
+        //     }
+           
+        // }
+        // getCoords();
+        // if (typeof window !== "undefined" && window.navigator.geolocation) {
+        //     window.navigator.geolocation.getCurrentPosition(
+        //         (position) => {
+        //             const { latitude, longitude } = position.coords;
+        //             setLatitude(String(latitude));
+        //             setLongitude(String(longitude));
+        //             setMarkerPosition({ lat: latitude, lng: longitude });
+        //         },
+        //         (error) => {
+        //             setLatitude("37.7749");
+        //             setLongitude("-122.4194");
+        //             console.error("Error fetching location:", error);
+        //         }
+        //     );
+        // }
     }, []);
 
 
@@ -130,7 +153,7 @@ const FormComponent = () => {
         }
     };
 
-    if (!isLoaded) return <Loader/>;
+    if (!isLoaded) return <Loader />;
 
     return (
         <section className="lg:w-[35%] md:w-[50%] w-full lg:h-screen h-fit bg-white md:p-[23px] p-[15px] shadow-xl rounded-md">
@@ -191,7 +214,7 @@ const FormComponent = () => {
                         className="w-full outline-none mt-[6px]" />
                 </div>
                 <div className="mt-[40px] w-full">
-                    <Button  disabled={loading} type="submit"
+                    <Button disabled={loading} type="submit"
                         className="w-full text-white font-medium hover:bg-gray-700 hover:text-white">
                         {loading ? <>
                             <Loader /> In Progress...
@@ -202,7 +225,7 @@ const FormComponent = () => {
 
             <div className="mt-8 hidden">
                 <h2 className="text-lg font-bold mb-2">Set Organization Location on Map</h2>
-               {latitude && longitude && <GoogleMap
+                {latitude && longitude && <GoogleMap
                     zoom={12}
                     center={markerPosition}
                     mapContainerStyle={{ width: "100%", height: "400px" }}
