@@ -1,11 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import dynamic from "next/dynamic";
+import FormComponent from "@/components/organisms/Form";
+// import dynamic from "next/dynamic";
 import MapComponent from "@/components/organisms/Map";
 import BookingComponent from "@/components/organisms/Booking";
 
-const FormComponent = dynamic(() => import("@/components/organisms/Form"), { ssr: false });
+// const FormComponent = dynamic(() => import("@/components/organisms/Form"), { ssr: false });
 
 type orgSchema = {
   id: string;

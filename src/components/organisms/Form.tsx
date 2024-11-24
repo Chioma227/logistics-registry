@@ -27,11 +27,11 @@ const FormComponent = () => {
     const [latitude, setLatitude] = useState("37.7749");
     const [longitude, setLongitude] = useState("-122.4194");
     const [markerPosition, setMarkerPosition] = useState(defaultCenter);
-    const [isClient, setIsClient] = useState(false);
+    // const [isClient, setIsClient] = useState(false);
 
-    useEffect(() => {
-      setIsClient(true); // Mark the component as mounted
-    }, []);
+    // useEffect(() => {
+    //   setIsClient(true); // Mark the component as mounted
+    // }, []);
   
 
     const { isLoaded } = useLoadScript({
@@ -40,8 +40,8 @@ const FormComponent = () => {
 
     // get longitude and latitude values from user's location
     useEffect(() => {
-        if (typeof window !== "undefined" && navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
+        if (typeof window !== "undefined" && window.navigator.geolocation) {
+            window.navigator.geolocation.getCurrentPosition(
                 (position) => {
                     const { latitude, longitude } = position.coords;
                     setLatitude(String(latitude));
@@ -130,8 +130,7 @@ const FormComponent = () => {
         }
     };
 
-    if (!isLoaded) return <div>Loading map...</div>;
-    if (!isClient) return null;
+    if (!isLoaded) return <Loader/>;
 
     return (
         <section className="lg:w-[35%] md:w-[50%] w-full lg:h-screen h-fit bg-white md:p-[23px] p-[15px] shadow-xl rounded-md">
