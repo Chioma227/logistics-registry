@@ -2,9 +2,9 @@ import RegisterComponent from "@/components/pages/register/RegisterComponent"
 
 const Register = () => {
   
-  if (typeof window === "undefined") return null; 
+  if (typeof window === "undefined") return <RegisterComponent/>; 
   
-  return <RegisterComponent/>
+  // return 
 }
 
 export default Register
