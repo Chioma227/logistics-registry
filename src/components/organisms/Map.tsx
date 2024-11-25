@@ -9,7 +9,7 @@ import { MapPin, Phone, Mail } from "lucide-react";
 import { collection, onSnapshot } from "firebase/firestore";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
-
+//organization schema
 type orgSchema = {
     id: string;
     name?: string,
@@ -44,8 +44,7 @@ const MapComponent = ({
         setIsDialogOpen(true);
     };
 
- 
-
+    //get organization data from firebase
     useEffect(() => {
         const unsubscribe = onSnapshot(collection(db, "organizations"), (snapshot) => {
             const orgData: orgSchema[] = snapshot.docs.map((doc) => {

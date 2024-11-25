@@ -1,12 +1,13 @@
 "use client";
 
-import Header from "@/components/molecules/Header"
-import { useRouter } from "next/navigation"
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import Header from "@/components/molecules/Header";
 
 const HomeComponent = () => {
     const router = useRouter();
 
+    //handle navigate
     const handleRoute = () => {
         router.push("/register")
     }

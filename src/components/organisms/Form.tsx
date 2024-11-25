@@ -27,19 +27,11 @@ const FormComponent = () => {
     const [latitude, setLatitude] = useState("37.7749");
     const [longitude, setLongitude] = useState("-122.4194");
     const [markerPosition, setMarkerPosition] = useState(defaultCenter);
-    // const [isClient, setIsClient] = useState(false);
-
-    // useEffect(() => {
-    //   setIsClient(true); // Mark the component as mounted
-    // }, []);
-
-
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: GOOGLE_MAPS_API_KEY,
     });
 
-    // let window: Window & typeof globalThis;
-
+    //request users' permission to access location on page mount
     useEffect(() => {
         if (typeof window !== "undefined" && "geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(
@@ -68,32 +60,6 @@ const FormComponent = () => {
             setMarkerPosition({ lat, lng });
         }
     };
-
-
-    // const handleGeocode = async () => {
-    //     if (!address) {
-    //         toast("Please enter an address.");
-    //         return;
-    //     }
-    //     try {
-    //         const response = await fetch(
-    //             `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
-    //                 address
-    //             )}&key=${GOOGLE_MAPS_API_KEY}`
-    //         );
-    //         const data = await response.json();
-    //         if (data.results.length > 0) {
-    //             const location = data.results[0].geometry.location;
-    //             setLatitude(location.lat);
-    //             setLongitude(location.lng);
-    //             setMarkerPosition({ lat: location.lat, lng: location.lng });
-    //         } else {
-    //             toast("Address not found.");
-    //         }
-    //     } catch (error) {
-    //         console.error("Geocoding error:", error);
-    //     }
-    // };
 
     //handle submit function
     const handleSubmit = async (e: React.FormEvent) => {

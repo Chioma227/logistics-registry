@@ -1,15 +1,15 @@
 "use client";
 
 import { useState } from "react";
-// import FormComponent from "@/components/organisms/Form";
 import dynamic from "next/dynamic";
-// import MapComponent from "@/components/organisms/Map";
-// import BookingComponent from "@/components/organisms/Booking";
 
-const FormComponent = dynamic(() => import("@/components/organisms/Form"), { ssr: false });
+//dynamic component imports
 const MapComponent = dynamic(() => import("@/components/organisms/Map"), { ssr: false });
+const FormComponent = dynamic(() => import("@/components/organisms/Form"), { ssr: false });
 const BookingComponent = dynamic(() => import("@/components/organisms/Booking"), { ssr: false });
 
+
+//organization schema
 type orgSchema = {
   id: string;
   name?: string,
