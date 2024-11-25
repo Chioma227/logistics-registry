@@ -1,3 +1,5 @@
+"use client";
+
 import RegisterComponent from "@/components/pages/register/RegisterComponent"
 
 const Register = () => {
