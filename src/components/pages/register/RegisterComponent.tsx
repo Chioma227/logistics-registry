@@ -3,10 +3,12 @@
 import { useState } from "react";
 // import FormComponent from "@/components/organisms/Form";
 import dynamic from "next/dynamic";
-import MapComponent from "@/components/organisms/Map";
-import BookingComponent from "@/components/organisms/Booking";
+// import MapComponent from "@/components/organisms/Map";
+// import BookingComponent from "@/components/organisms/Booking";
 
 const FormComponent = dynamic(() => import("@/components/organisms/Form"), { ssr: false });
+const MapComponent = dynamic(() => import("@/components/organisms/Map"), { ssr: false });
+const BookingComponent = dynamic(() => import("@/components/organisms/Booking"), { ssr: false });
 
 type orgSchema = {
   id: string;
