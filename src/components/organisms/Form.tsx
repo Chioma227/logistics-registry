@@ -39,8 +39,46 @@ const FormComponent = () => {
     });
 
     // get longitude and latitude values from user's location
+ // Run geocoding on address change
+
+    // const handleGeocode = async () => {
+    //     if (!address) {
+    //         toast("Please enter a valid address.");
+    //         return;
+    //     }
+
+    //     try {
+    //         const response = await fetch(
+    //             `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${GOOGLE_MAPS_API_KEY}`
+    //         );
+    //         const data = await response.json();
+
+    //         if (data.status === "OK" && data.results.length > 0) {
+    //             const location = data.results[0].geometry.location;
+    //             setLatitude(location.lat);
+    //             setLongitude(location.lng);
+    //             setMarkerPosition({ lat: location.lat, lng: location.lng });
+    //             // setError(""); // Clear any previous errors
+    //         } else {
+    //             toast("Address not found.");
+    //             console.log(data);
+                
+    //         }
+    //     } catch (err) {
+    //         console.error("Geocoding error:", err);
+    //         toast("An error occurred while fetching location.");
+    //     }
+    // };
+
+    // useEffect(() => {
+    //     if (address) {
+    //         // Trigger geocoding when address changes
+    //         handleGeocode();
+    //     }
+    // }, [address]); 
+
     useEffect(() => {
-        if ("geolocation" in navigator) {
+        if (typeof window !== "undefined" && "geolocation" in navigator) {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
                     const { latitude, longitude } = position.coords;
@@ -69,30 +107,30 @@ const FormComponent = () => {
     };
 
 
-    const handleGeocode = async () => {
-        if (!address) {
-            toast("Please enter an address.");
-            return;
-        }
-        try {
-            const response = await fetch(
-                `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
-                    address
-                )}&key=${GOOGLE_MAPS_API_KEY}`
-            );
-            const data = await response.json();
-            if (data.results.length > 0) {
-                const location = data.results[0].geometry.location;
-                setLatitude(location.lat);
-                setLongitude(location.lng);
-                setMarkerPosition({ lat: location.lat, lng: location.lng });
-            } else {
-                toast("Address not found.");
-            }
-        } catch (error) {
-            console.error("Geocoding error:", error);
-        }
-    };
+    // const handleGeocode = async () => {
+    //     if (!address) {
+    //         toast("Please enter an address.");
+    //         return;
+    //     }
+    //     try {
+    //         const response = await fetch(
+    //             `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
+    //                 address
+    //             )}&key=${GOOGLE_MAPS_API_KEY}`
+    //         );
+    //         const data = await response.json();
+    //         if (data.results.length > 0) {
+    //             const location = data.results[0].geometry.location;
+    //             setLatitude(location.lat);
+    //             setLongitude(location.lng);
+    //             setMarkerPosition({ lat: location.lat, lng: location.lng });
+    //         } else {
+    //             toast("Address not found.");
+    //         }
+    //     } catch (error) {
+    //         console.error("Geocoding error:", error);
+    //     }
+    // };
 
     //handle submit function
     const handleSubmit = async (e: React.FormEvent) => {
@@ -121,7 +159,7 @@ const FormComponent = () => {
             setNumber('');
             setAddress('');
             setLoading(false);
-            handleGeocode();
+            // handleGeocode();
         } catch {
             setLoading(false);
             toast("Failed to add organization");
